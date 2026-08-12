@@ -1,0 +1,41 @@
+@model IEnumerable<ControlEquipos.Models.Equipo>
+
+@{
+    ViewData["Title"] = "Equipos";
+}
+
+<h1>Equipos</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Nuevo equipo</a>
+</p>
+
+<div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Serial</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var equipo in Model)
+            {
+                <tr>
+                    <td>@equipo.Id</td>
+                    <td>@equipo.Nombre</td>
+                    <td>@equipo.Tipo</td>
+                    <td>@equipo.Marca</td>
+                    <td>@equipo.Modelo</td>
+                    <td>@equipo.Serial</td>
+                    <td>@equipo.Estado</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
