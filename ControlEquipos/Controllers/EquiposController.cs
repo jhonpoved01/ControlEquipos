@@ -21,6 +21,95 @@ namespace ControlEquipos.Controllers
             return View(equipos);
         }
 
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var equipo = await _context.Equipos
+                .FirstOrDefaultAsync(equipo => equipo.Id == id);
+
+            if (equipo == null)
+            {
+                return NotFound();
+            }
+
+            return View(equipo);
+        }
+
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var equipo = await _context.Equipos
+                .FirstOrDefaultAsync(equipo => equipo.Id == id);
+
+            if (equipo == null)
+            {
+                return NotFound();
+            }
+
+            return View(equipo);
+        }
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var equipo = await _context.Equipos
+                .FirstOrDefaultAsync(equipo => equipo.Id == id);
+
+            if (equipo == null)
+            {
+                return NotFound();
+            }
+
+            return View(equipo);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var equipo = await _context.Equipos.FindAsync(id);
+
+            if (equipo != null)
+            {
+                _context.Equipos.Remove(equipo);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, Equipo equipo)
+        {
+            if (id != equipo.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                _context.Update(equipo);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(equipo);
+        }
+
         public IActionResult Create()
         {
             return View();
