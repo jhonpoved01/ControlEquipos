@@ -1,8 +1,46 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center p-5 mb-4 bg-light rounded shadow-sm">
+    <h1 class="display-5 fw-bold">Control de Equipos</h1>
+    <p class="lead">
+        Sistema para registrar y administrar equipos tecnológicos de forma sencilla, organizada y segura.
+    </p>
+    <a asp-controller="Equipos" asp-action="Index" class="btn btn-primary btn-lg">Gestionar equipos</a>
+</div>
+
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h2 class="card-title h4">Registrar</h2>
+                <p class="card-text">
+                    Permite agregar nuevos equipos con su información principal y estado actual.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h2 class="card-title h4">Consultar</h2>
+                <p class="card-text">
+                    Permite visualizar la información de los equipos registrados en el sistema.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h2 class="card-title h4">Administrar</h2>
+                <p class="card-text">
+                    Permite actualizar la información o eliminar equipos cuando sea necesario.
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
