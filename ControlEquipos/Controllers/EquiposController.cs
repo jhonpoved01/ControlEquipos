@@ -85,6 +85,9 @@ namespace ControlEquipos.Controllers
             {
                 _context.Equipos.Remove(equipo);
                 await _context.SaveChangesAsync();
+
+                TempData["MensajeExito"] =
+                    "Equipo eliminado correctamente.";
             }
 
             return RedirectToAction(nameof(Index));
@@ -130,6 +133,9 @@ namespace ControlEquipos.Controllers
 
                 await _context.SaveChangesAsync();
 
+                TempData["MensajeExito"] =
+                    "Equipo actualizado correctamente.";
+
                 return RedirectToAction(nameof(Index));
             }
 
@@ -162,6 +168,9 @@ namespace ControlEquipos.Controllers
             {
                 _context.Equipos.Add(equipo);
                 await _context.SaveChangesAsync();
+
+                TempData["MensajeExito"] =
+                    "Equipo registrado correctamente.";
 
                 return RedirectToAction(nameof(Index));
             }

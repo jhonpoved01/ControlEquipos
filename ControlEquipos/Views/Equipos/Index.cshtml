@@ -12,6 +12,13 @@
     <a asp-action="Create" class="btn btn-primary">Nuevo equipo</a>
 </div>
 
+@if (TempData["MensajeExito"] is string mensajeExito)
+{
+    <div class="alert alert-success" role="alert">
+        @mensajeExito
+    </div>
+}
+
 @if (Model.Any())
 {
     <div class="table-responsive">
