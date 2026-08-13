@@ -101,7 +101,20 @@ namespace ControlEquipos.Controllers
 
             if (ModelState.IsValid)
             {
-                _context.Update(equipo);
+                var equipoExistente = await _context.Equipos.FindAsync(id);
+
+                if (equipoExistente == null)
+                {
+                    return NotFound();
+                }
+
+                equipoExistente.Nombre = equipo.Nombre;
+                equipoExistente.Tipo = equipo.Tipo;
+                equipoExistente.Marca = equipo.Marca;
+                equipoExistente.Modelo = equipo.Modelo;
+                equipoExistente.Serial = equipo.Serial;
+                equipoExistente.Estado = equipo.Estado;
+
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
