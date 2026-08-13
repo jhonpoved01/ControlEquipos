@@ -99,6 +99,19 @@ namespace ControlEquipos.Controllers
                 return NotFound();
             }
 
+            if (!string.IsNullOrWhiteSpace(equipo.Serial))
+            {
+                var serialExiste = await _context.Equipos
+                    .AnyAsync(e => e.Serial == equipo.Serial && e.Id != id);
+
+                if (serialExiste)
+                {
+                    ModelState.AddModelError(
+                        nameof(equipo.Serial),
+                        "Ya existe un equipo con este serial");
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 var equipoExistente = await _context.Equipos.FindAsync(id);
@@ -132,6 +145,19 @@ namespace ControlEquipos.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Equipo equipo)
         {
+            if (!string.IsNullOrWhiteSpace(equipo.Serial))
+            {
+                var serialExiste = await _context.Equipos
+                    .AnyAsync(e => e.Serial == equipo.Serial);
+
+                if (serialExiste)
+                {
+                    ModelState.AddModelError(
+                        nameof(equipo.Serial),
+                        "Ya existe un equipo con este serial");
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Equipos.Add(equipo);

@@ -11,6 +11,15 @@ namespace ControlEquipos.Data
         }
 
         public DbSet<Equipo> Equipos { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Equipo>()
+                .HasIndex(e => e.Serial)
+                .IsUnique();
+        }
     }
 }
 
