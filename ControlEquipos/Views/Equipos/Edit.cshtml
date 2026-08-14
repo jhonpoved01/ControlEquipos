@@ -1,4 +1,5 @@
 @model ControlEquipos.Models.Equipo
+@* La acción Edit carga en este modelo los datos actuales del equipo que se modificará. *@
 
 @{
     ViewData["Title"] = "Editar equipo";
@@ -13,10 +14,14 @@
 
         <div class="card shadow-sm">
             <div class="card-body p-4">
+                @* El formulario devuelve por POST los cambios a la acción Edit del controlador. *@
                 <form asp-action="Edit" method="post">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    @* El campo oculto conserva el Id para comprobar y localizar el registro correcto. *@
                     <input asp-for="Id" type="hidden" />
 
+                    @* asp-for mantiene el enlace con Equipo y asp-validation-for presenta
+                       los errores de las DataAnnotations y de las validaciones adicionales. *@
                     <div class="mb-3">
                         <label asp-for="Nombre" class="form-label"></label>
                         <input asp-for="Nombre" class="form-control" />
@@ -47,6 +52,7 @@
                         <span asp-validation-for="Serial" class="text-danger"></span>
                     </div>
 
+                    @* El selector ofrece únicamente los estados que acepta la regla del modelo. *@
                     <div class="mb-3">
                         <label asp-for="Estado" class="form-label"></label>
                         <select asp-for="Estado" class="form-select">
@@ -68,6 +74,7 @@
     </div>
 </div>
 
+@* El parcial incorpora la validación del lado del cliente para este formulario. *@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

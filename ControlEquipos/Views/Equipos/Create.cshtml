@@ -1,4 +1,5 @@
 @model ControlEquipos.Models.Equipo
+@* La vista utiliza Equipo para enlazar los campos y presentar sus errores de validación. *@
 
 @{
     ViewData["Title"] = "Registrar equipo";
@@ -13,9 +14,12 @@
 
         <div class="card shadow-sm">
             <div class="card-body p-4">
+                @* El formulario envía por POST los datos enlazados a la acción Create del controlador. *@
                 <form asp-action="Create" method="post">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+                    @* asp-for enlaza cada control con el modelo y asp-validation-for muestra
+                       los errores producidos por las DataAnnotations o por el controlador. *@
                     <div class="mb-3">
                         <label asp-for="Nombre" class="form-label"></label>
                         <input asp-for="Nombre" class="form-control" />
@@ -46,6 +50,7 @@
                         <span asp-validation-for="Serial" class="text-danger"></span>
                     </div>
 
+                    @* El selector limita la interfaz a los estados admitidos por el modelo. *@
                     <div class="mb-3">
                         <label asp-for="Estado" class="form-label"></label>
                         <select asp-for="Estado" class="form-select">
@@ -67,6 +72,7 @@
     </div>
 </div>
 
+@* El parcial activa en el navegador la validación no intrusiva asociada al modelo. *@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

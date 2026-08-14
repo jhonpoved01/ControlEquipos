@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+@* Este layout define la estructura compartida que rodea el contenido de todas las vistas. *@
 <html lang="es">
 <head>
     <meta charset="utf-8" />
@@ -10,6 +11,7 @@
     <link rel="stylesheet" href="~/ControlEquipos.styles.css" asp-append-version="true" />
 </head>
 <body>
+    @* La barra de navegación usa Tag Helpers para enlazar las secciones principales mediante MVC. *@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark shadow-sm mb-3">
             <div class="container-fluid">
@@ -33,6 +35,7 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            @* RenderBody inserta aquí el contenido específico de la vista solicitada. *@
             @RenderBody()
         </main>
     </div>
@@ -42,9 +45,11 @@
             &copy; 2026 - ControlEquipos
         </div>
     </footer>
+    @* Los scripts compartidos se cargan al final para habilitar Bootstrap y el código del sitio. *@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    @* Cada vista puede añadir de forma opcional sus scripts, como los de validación. *@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

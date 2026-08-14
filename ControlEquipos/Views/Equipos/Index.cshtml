@@ -1,4 +1,5 @@
 @model IEnumerable<ControlEquipos.Models.Equipo>
+@* La acción Index entrega una colección de equipos que esta vista recorre para construir el listado. *@
 
 @{
     ViewData["Title"] = "Equipos";
@@ -12,6 +13,7 @@
     <a asp-action="Create" class="btn btn-primary">Nuevo equipo</a>
 </div>
 
+@* TempData muestra una sola vez la confirmación enviada después de crear, editar o eliminar. *@
 @if (TempData["MensajeExito"] is string mensajeExito)
 {
     <div class="alert alert-success" role="alert">
@@ -19,8 +21,10 @@
     </div>
 }
 
+@* Model.Any distingue entre el listado con registros y el estado vacío de la página. *@
 @if (Model.Any())
 {
+    @* table-responsive permite desplazar horizontalmente la tabla en pantallas pequeñas. *@
     <div class="table-responsive">
         <table class="table table-striped table-hover align-middle table-bordered">
             <thead class="table-dark">
@@ -36,6 +40,7 @@
                 </tr>
             </thead>
             <tbody>
+                @* Cada iteración representa un equipo recibido desde el controlador. *@
                 @foreach (var equipo in Model)
                 {
                     <tr>
@@ -47,6 +52,7 @@
                         <td>@equipo.Serial</td>
                         <td>@equipo.Estado</td>
                         <td>
+                            @* Estas acciones completan el flujo CRUD para el registro seleccionado. *@
                             <div class="d-flex flex-wrap gap-2">
                                 <a asp-action="Edit" asp-route-id="@equipo.Id" class="btn btn-sm btn-warning">Editar</a>
                                 <a asp-action="Details" asp-route-id="@equipo.Id" class="btn btn-sm btn-info">Detalles</a>
@@ -61,6 +67,7 @@
 }
 else
 {
+    @* Si no hay registros, se orienta al usuario hacia la creación del primer equipo. *@
     <div class="text-center border rounded p-4 p-md-5 bg-light shadow-sm">
         <h2>No hay equipos registrados</h2>
         <p class="text-muted">Actualmente no existen equipos registrados en el sistema.</p>

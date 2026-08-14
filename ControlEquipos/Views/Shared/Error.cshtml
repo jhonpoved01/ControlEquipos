@@ -3,9 +3,11 @@
     ViewData["Title"] = "Error";
 }
 
+@* El modelo permite mostrar un identificador que facilita rastrear la solicitud con error. *@
 <h1 class="text-danger">Error.</h1>
 <h2 class="text-danger">An error occurred while processing your request.</h2>
 
+@* El identificador solo se presenta cuando el controlador pudo obtenerlo. *@
 @if (Model.ShowRequestId)
 {
     <p>

@@ -2,10 +2,14 @@
 
 namespace ControlEquipos.Models
 {
+    // Representa un equipo dentro del flujo MVC y se utiliza tanto en las vistas
+    // como en las operaciones de Entity Framework Core sobre la base de datos.
     public class Equipo
     {
         public int Id { get; set; }
 
+        // Estas DataAnnotations declaran reglas compartidas por el model binding y la validación:
+        // Required impide valores vacíos y StringLength limita el tamaño permitido de los textos.
         [Required(ErrorMessage = "El nombre es obligatorio")]
         [StringLength(100, ErrorMessage = "El nombre no puede superar los 100 caracteres")]
         public string Nombre { get; set; } = string.Empty;
@@ -28,6 +32,7 @@ namespace ControlEquipos.Models
 
         [Required(ErrorMessage = "El estado es obligatorio")]
         [StringLength(30, ErrorMessage = "El estado no puede superar los 30 caracteres")]
+        // La expresión regular restringe el estado a las tres opciones admitidas por la aplicación.
         [RegularExpression("^(Disponible|En uso|Mantenimiento)$", ErrorMessage = "El estado seleccionado no es válido")]
         public string Estado { get; set; } = string.Empty;
     }
