@@ -1,0 +1,49 @@
+@model ControlEquipos.Models.Equipo
+@* Details recibe un Equipo y presenta su información sin controles de edición. *@
+
+@{
+    ViewData["Title"] = "Detalles del equipo";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="mb-4">
+            <h1>Detalles del equipo</h1>
+            <p class="text-muted mb-0">Consulta la información completa del equipo seleccionado.</p>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                @* Los valores se leen directamente del Model enviado por la acción Details. *@
+                <dl class="row mb-0">
+                    <dt class="col-sm-3">Id</dt>
+                    <dd class="col-sm-9">@Model.Id</dd>
+
+                    <dt class="col-sm-3">Nombre</dt>
+                    <dd class="col-sm-9">@Model.Nombre</dd>
+
+                    <dt class="col-sm-3">Tipo</dt>
+                    <dd class="col-sm-9">@Model.Tipo</dd>
+
+                    <dt class="col-sm-3">Marca</dt>
+                    <dd class="col-sm-9">@Model.Marca</dd>
+
+                    <dt class="col-sm-3">Modelo</dt>
+                    <dd class="col-sm-9">@Model.Modelo</dd>
+
+                    <dt class="col-sm-3">Serial</dt>
+                    <dd class="col-sm-9 text-break">@Model.Serial</dd>
+
+                    <dt class="col-sm-3">Estado</dt>
+                    <dd class="col-sm-9">@Model.Estado</dd>
+                </dl>
+
+                @* Los botones permiten continuar hacia Edit o regresar al listado principal. *@
+                <div class="d-flex flex-column flex-sm-row gap-2 mt-4">
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Editar</a>
+                    <a asp-action="Index" class="btn btn-outline-secondary">Volver</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -3,6 +3,7 @@ using ControlEquipos.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ControlEquipos.Migrations
 {
     [DbContext(typeof(ControlEquiposContext))]
-    partial class ControlEquiposContextModelSnapshot : ModelSnapshot
+    [Migration("20260813151650_ValidacionesIntegridadEquipo")]
+    partial class ValidacionesIntegridadEquipo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

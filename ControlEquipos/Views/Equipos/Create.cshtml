@@ -1,0 +1,78 @@
+@model ControlEquipos.Models.Equipo
+@* La vista utiliza Equipo para enlazar los campos y presentar sus errores de validación. *@
+
+@{
+    ViewData["Title"] = "Registrar equipo";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="mb-4">
+            <h1>Registrar equipo</h1>
+            <p class="text-muted mb-0">Completa la información del nuevo equipo.</p>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                @* El formulario envía por POST los datos enlazados a la acción Create del controlador. *@
+                <form asp-action="Create" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    @* asp-for enlaza cada control con el modelo y asp-validation-for muestra
+                       los errores producidos por las DataAnnotations o por el controlador. *@
+                    <div class="mb-3">
+                        <label asp-for="Nombre" class="form-label"></label>
+                        <input asp-for="Nombre" class="form-control" />
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Tipo" class="form-label"></label>
+                        <input asp-for="Tipo" class="form-control" />
+                        <span asp-validation-for="Tipo" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Marca" class="form-label"></label>
+                        <input asp-for="Marca" class="form-control" />
+                        <span asp-validation-for="Marca" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Modelo" class="form-label"></label>
+                        <input asp-for="Modelo" class="form-control" />
+                        <span asp-validation-for="Modelo" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Serial" class="form-label"></label>
+                        <input asp-for="Serial" class="form-control" />
+                        <span asp-validation-for="Serial" class="text-danger"></span>
+                    </div>
+
+                    @* El selector limita la interfaz a los estados admitidos por el modelo. *@
+                    <div class="mb-3">
+                        <label asp-for="Estado" class="form-label"></label>
+                        <select asp-for="Estado" class="form-select">
+                            <option value="">Seleccione un estado</option>
+                            <option value="Disponible">Disponible</option>
+                            <option value="En uso">En uso</option>
+                            <option value="Mantenimiento">Mantenimiento</option>
+                        </select>
+                        <span asp-validation-for="Estado" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-flex flex-column flex-sm-row gap-2">
+                        <button type="submit" class="btn btn-primary">Guardar equipo</button>
+                        <a asp-action="Index" class="btn btn-outline-secondary">Volver</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* El parcial activa en el navegador la validación no intrusiva asociada al modelo. *@
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
